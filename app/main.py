@@ -8,6 +8,7 @@ import charts
 
 def run():
   data = read_csv.read_csv('data.csv')
+  data = list(filter(lambda item : item['Continent'] == 'South America', data))
 
   countries = list(map(lambda x: x['Country/Territory'], data))
   percentages = list(map(lambda x: x['World Population Percentage'], data))
@@ -21,13 +22,13 @@ def run():
   if len(result) > 0:
     country = result[0]
     labels, values = utils.get_population(country)
-    charts.generate_bar_chart(labels, values)
+    charts.generate_bar_chart(country['Country'], labels, values)
 
   
   
 
   
-  print(result)
+  
   
 if __name__ == '__main__':
   run()
